@@ -188,6 +188,47 @@ For running multiple competitions in parallel:
 bash scheduler_leaf.sh
 ```
 
+### 7. Example Tasks (Quick Start)
+
+The `example_tasks/` directory includes three ready-to-run MLEBench competitions:
+
+| Task | Type | Metric | File |
+|------|------|--------|------|
+| Leaf Classification | Tabular (multi-class) | Log Loss ↓ | `leaf-classification.tar.gz` |
+| Nomad 2018 | Molecular property | RMSE ↓ | `nomad2018-predict-transparent-conductors.tar.gz` |
+| Stanford COVID Vaccine | RNA / Seq2Seq | MCRMSE ↓ | `stanford-covid-vaccine.tar.gz` |
+
+Extract and run:
+```bash
+# Extract
+cd example_tasks
+tar -xzf leaf-classification.tar.gz
+cd ..
+
+# Run
+python -m leaf.run \
+    data_dir=./example_tasks/leaf-classification/public \
+    desc_file=./example_tasks/leaf-classification/public/description.md \
+    exp_name=leaf-classification
+```
+
+**Tips for better results:**
+- **Add a skill file** (`skill_file=...`) with your current best approach to skip zero-shot exploration and start from a strong baseline
+- **Add an eval prompt** (`mle_data_dir=...`) with task-specific evaluation rules so the evaluator knows exactly what metric to extract
+- **Run multiple tasks in parallel** using `scheduler_leaf.sh` — assign different GPUs to different experiments for maximum throughput
+
+```bash
+# Example: run with skill + eval prompt in background
+mkdir -p logs
+nohup python -m leaf.run \
+    data_dir=./example_tasks/leaf-classification/public \
+    desc_file=./example_tasks/leaf-classification/public/description.md \
+    skill_file=./skills/leaf_best.md \
+    mle_data_dir=./eval_prompts \
+    exp_name=leaf-classification \
+    > logs/leaf-classification.log 2>&1 &
+```
+
 ## ⚙️ Configuration
 
 All configuration is in `utils/config.yaml` and can be overridden via CLI arguments (OmegaConf).
