@@ -1,0 +1,61 @@
+# LEAF - Core Dependencies
+# Includes both LEAF framework dependencies and ML packages needed by agent-generated code.
+
+# --- LLM API Clients ---
+openai>=1.30.0
+anthropic>=0.30.0
+
+# --- Configuration ---
+omegaconf>=2.3.0
+
+# --- Data Processing ---
+numpy>=1.24.0
+pandas>=2.0.0
+pyarrow>=12.0.0
+
+# --- Semantic Search & Retrieval ---
+faiss-cpu>=1.7.4
+sentence-transformers>=2.2.0
+rank-bm25>=0.2.2
+
+# --- Code Formatting & Validation ---
+black>=23.0.0
+jsonschema>=4.17.0
+
+# --- HTTP & API Utilities ---
+requests>=2.28.0
+tenacity>=8.2.0
+funcy>=1.17
+
+# --- Serialization ---
+dataclasses-json>=0.5.7
+genson>=1.2.0
+
+# --- ML Packages (used by agent-generated code) ---
+scikit-learn>=1.3.0
+statsmodels>=0.14.0
+xgboost>=2.0.0
+lightgbm>=4.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+torch-geometric>=2.3.0
+bayesian-optimization>=1.4.0
+timm>=0.9.0
+transformers>=4.30.0
+nltk>=3.8.0
+spacy>=3.6.0
+
+# --- Terminal & Logging ---
+rich>=13.0.0
+shutup>=0.2.0
+humanize>=4.6.0
+
+# --- Grade Server (optional, for MLEBench validation) ---
+# Uncomment if using grade_server with MLEBench:
+# flask>=2.3.0
+# mlebench>=0.1.0
+
+# --- Web UI (optional, for streamlit dashboard) ---
+# Uncomment if using the web UI:
+# streamlit>=1.20.0
+# python-dotenv>=1.0.0

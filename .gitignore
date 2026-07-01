@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs & outputs
+logs/
+workspaces/
+*.log
+
+# Data & models (large files)
+models/
+*.tar.gz
+example_tasks/*/private/
+
+# Environment
+.env
+*.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
