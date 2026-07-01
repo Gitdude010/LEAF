@@ -15,9 +15,8 @@ logs/
 workspaces/
 *.log
 
-# Data & models (large files)
+# Data (large files)
 models/
-*.tar.gz
 example_tasks/*/private/
 
 # Environment
