@@ -194,13 +194,18 @@ bash scheduler_leaf.sh
 
 ### 7. Example Tasks (Quick Start)
 
-The `example_tasks/` directory includes three ready-to-run MLEBench competitions:
+The `example_tasks/` directory includes three ready-to-run competitions:
 
-| Task | Type | Metric | File |
-|------|------|--------|------|
-| Leaf Classification | Tabular (multi-class) | Log Loss ↓ | `leaf-classification.tar.gz` |
-| Nomad 2018 | Molecular property | RMSE ↓ | `nomad2018-predict-transparent-conductors.tar.gz` |
-| Stanford COVID Vaccine | RNA / Seq2Seq | MCRMSE ↓ | `stanford-covid-vaccine.tar.gz` |
+| Task | Type | Metric | MLEBench Prepared | File |
+|------|------|--------|--------------------|------|
+| Leaf Classification | Tabular + Image (multi-class) | Log Loss ↓ | ❌ No | `leaf-classification.tar.gz` |
+| Nomad 2018 | Molecular property | RMSE ↓ | ✅ Yes | `nomad2018-predict-transparent-conductors.tar.gz` |
+| Stanford COVID Vaccine | RNA / Seq2Seq | MCRMSE ↓ | ✅ Yes | `stanford-covid-vaccine.tar.gz` |
+
+> **🚨 IMPORTANT: MLEBench Scoring Compatibility**
+>
+> - **nomad2018** and **stanford-covid-vaccine** were prepared using `mlebench prepare`, so their `submission.csv` outputs **can be directly scored** by the MLEBench grading pipeline.
+> - **leaf-classification** was **NOT** prepared via `mlebench prepare` — it uses raw Kaggle data format. Its output **cannot be used for MLEBench scoring**. To score it, you must first run `mlebench prepare -c dogs-vs-cats-redux-kernels-edition` (or the corresponding competition ID) and use the prepared data instead.
 
 > **⚠️ Directory Structure Notice**
 >
