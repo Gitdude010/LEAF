@@ -55,6 +55,10 @@ leaf/
 ├── kaggle_prompt/         # Domain-specific ML guidance (per task type)
 ├── kaggle_prompt_conventional/  # Conventional ML guidance
 ├── eva_prompt/            # Per-competition evaluation prompts
+├── example_tasks/         # Ready-to-run MLEBench competitions
+│   ├── leaf-classification.tar.gz           # Tabular multi-class (Log Loss)
+│   ├── nomad2018-predict-transparent-conductors.tar.gz  # Molecular property (RMSE)
+│   └── stanford-covid-vaccine.tar.gz        # RNA seq2seq (MCRMSE)
 └── webui/                 # Optional Streamlit web interface
 ```
 
@@ -198,18 +202,40 @@ The `example_tasks/` directory includes three ready-to-run MLEBench competitions
 | Nomad 2018 | Molecular property | RMSE ↓ | `nomad2018-predict-transparent-conductors.tar.gz` |
 | Stanford COVID Vaccine | RNA / Seq2Seq | MCRMSE ↓ | `stanford-covid-vaccine.tar.gz` |
 
+> **⚠️ Directory Structure Notice**
+>
+> Each example task was prepared from different sources, so their internal directory structures differ. **You must check the actual extracted structure and adjust `data_dir` and `desc_file` accordingly.** The paths below are correct for the current archives:
+
+| Task | `data_dir` | `desc_file` |
+|------|-----------|-------------|
+| leaf-classification | `./example_tasks/leaf-classification` | `./example_tasks/leaf-classification/description.md` |
+| nomad2018 | `./example_tasks/nomad2018-predict-transparent-conductors/public` | `./example_tasks/nomad2018-predict-transparent-conductors/public/description.md` |
+| stanford-covid-vaccine | `./example_tasks/stanford-covid-vaccine/prepared/public` | `./example_tasks/stanford-covid-vaccine/prepared/public/description.md` |
+
 Extract and run:
 ```bash
-# Extract
-cd example_tasks
-tar -xzf leaf-classification.tar.gz
-cd ..
+# Extract all tasks
+cd example_tasks && tar -xzf leaf-classification.tar.gz && \
+  tar -xzf nomad2018-predict-transparent-conductors.tar.gz && \
+  tar -xzf stanford-covid-vaccine.tar.gz && cd ..
 
-# Run
+# Run leaf-classification
 python -m leaf.run \
-    data_dir=./example_tasks/leaf-classification/public \
-    desc_file=./example_tasks/leaf-classification/public/description.md \
+    data_dir=./example_tasks/leaf-classification \
+    desc_file=./example_tasks/leaf-classification/description.md \
     exp_name=leaf-classification
+
+# Run nomad2018
+python -m leaf.run \
+    data_dir=./example_tasks/nomad2018-predict-transparent-conductors/public \
+    desc_file=./example_tasks/nomad2018-predict-transparent-conductors/public/description.md \
+    exp_name=nomad2018
+
+# Run stanford-covid-vaccine
+python -m leaf.run \
+    data_dir=./example_tasks/stanford-covid-vaccine/prepared/public \
+    desc_file=./example_tasks/stanford-covid-vaccine/prepared/public/description.md \
+    exp_name=stanford-covid-vaccine
 ```
 
 **Tips for better results:**
@@ -221,8 +247,8 @@ python -m leaf.run \
 # Example: run with skill + eval prompt in background
 mkdir -p logs
 nohup python -m leaf.run \
-    data_dir=./example_tasks/leaf-classification/public \
-    desc_file=./example_tasks/leaf-classification/public/description.md \
+    data_dir=./example_tasks/leaf-classification \
+    desc_file=./example_tasks/leaf-classification/description.md \
     skill_file=./skills/leaf_best.md \
     mle_data_dir=./eval_prompts \
     exp_name=leaf-classification \
