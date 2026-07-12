@@ -71,21 +71,21 @@ agent:
 
   # LLM settings for coding
   draft:
-    model: qwen3.7-max
+    model: 
     temp: 1
 
   debug:
-    model: qwen3.7-max
+    model: 
     temp: 1
 
 
   # LLM settings for evaluating program output / tracebacks
   feedback:
-    model: qwen3.7-max
+    model: 
     temp: 1
 
   cheap:
-    model: qwen3.7-max
+    model: qwen3.6-plus
     temp: 0.6
   # hyperparameters for the tree search
   search:
