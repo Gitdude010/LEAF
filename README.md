@@ -277,9 +277,9 @@ All configuration is in `utils/config.yaml` and can be overridden via CLI argume
 | `skill_file` | `null` | Path to skill markdown file (see [Writing Custom Skills](#-writing-custom-skills)) |
 | `mle_data_dir` | `null` | Path to eval prompt directory (see [Eval Prompts](#-eval-prompts)) |
 | `agent.steps` | `400` | Maximum search iterations |
-| `agent.draft.model` | `gpt-5.5` | LLM model for code generation |
-| `agent.feedback.model` | `gpt-5.5` | LLM model for evaluation |
-| `agent.cheap.model` | `qwen3.6-max-preview` | Lightweight model for auxiliary tasks |
+| `agent.draft.model` | `null` | LLM model for code generation |
+| `agent.feedback.model` | `null` | LLM model for evaluation |
+| `agent.cheap.model` | `qwen3.6-plus` | Lightweight model for auxiliary tasks |
 | `agent.search.num_drafts` | `3` | Number of initial draft solutions |
 | `agent.search.max_debug_depth` | `20` | Maximum consecutive debug attempts |
 | `exec.timeout` | `32400` | Code execution timeout (seconds) |
